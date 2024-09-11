@@ -9,8 +9,6 @@ export default function LayoutHome() {
 
   const [arrayPokemon, setArrayPokemon] = useState([])
 
-  
-
   useEffect(() => {
     const api = async () => {
       const apiPoke = await axios.get(`${URL_POKEMON}`); 
@@ -20,13 +18,13 @@ export default function LayoutHome() {
     api();
   }, [])
   
-
+  
 
   return (
     <div className={css.layout}>
       <Header/>
 
-      <div>
+      <div className={css.card_content}>
         {arrayPokemon.map((card, index) => {
           return <Card key={index} card={card}/>
         })}
