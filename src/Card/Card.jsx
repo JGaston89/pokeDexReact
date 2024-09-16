@@ -31,18 +31,25 @@ export default function Card({card}) {
     dataEspecie()
   }, []);
 
-  console.log(especiePokemon?.color?.name);
+  console.log(itemPokemon);
 
+
+  let pokeId = itemPokemon?.id?.toString();
+  if(pokeId?.length == 1){
+    pokeId = "00" + pokeId;
+  }else if (pokeId?.length == 2){
+    pokeId = "0" + pokeId;
+  }
 
   return (
     <div className={css.card}>
       <img className={css.img_poke} src={itemPokemon?.sprites?.other["official-artwork"]?.front_default} alt="Pokemon" />
       <div className={`bg-${especiePokemon?.color?.name} ${css.sub_card}`}>
-        <strong className={css.id_card}>001</strong>
-        <strong className={css.name_card}>name</strong>
-        <h4 className={css.altura_poke}>10cm</h4>
-        <h4 className={css.peso_poke}>peso</h4>
-        <h4 className={css.habitat_poke}>habitat</h4>
+        <strong className={css.id_card}>{pokeId}</strong>
+        <strong className={css.name_card}>{itemPokemon.name}</strong>
+        <h4 className={css.altura_poke}>Altura : {itemPokemon.height}0 cm</h4>
+        <h4 className={css.peso_poke}>Peso : {itemPokemon.weight} Kg</h4>
+        <h4 className={css.habitat_poke}>Habitat: {especiePokemon?.habitat?.name} {" "}</h4>
 
         <div className={css.div_stats}>
           {itemPokemon?.stats?.map((sta, index) => {
@@ -51,6 +58,13 @@ export default function Card({card}) {
                 <progress value={sta.base_stat} max={110}></progress>
                 <span className={css.numero}>{sta.base_stat}</span>
               </h6>    
+          })}
+        </div>
+
+        <div className={css.div_type_color}>
+          {itemPokemon?.types?.map((ti , index) => {
+            return (<h6 key={index} className={`color-${ti.type.name} ${css.color_type}`}> {ti.type.name}</h6>
+            );
           })}
         </div>
       </div>
