@@ -9,7 +9,6 @@ export default function Card({ card }) {
   const [especiePokemon, setEspeciePokemon] = useState({});
   const [evoluciones, setEvoluciones] = useState([]);
 
-  console.log(evoluciones);
 
   useEffect(() => {
     const dataPokemon = async () => {
