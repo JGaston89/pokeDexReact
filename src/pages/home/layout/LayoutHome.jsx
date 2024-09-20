@@ -6,11 +6,14 @@ import css from './layout.module.scss'
 import axios from "axios";
 import * as FaIcons from "react-icons/fa"
 
+
+
 export default function LayoutHome() {
 
-  const [arrayPokemon, setArrayPokemon] = useState([])
-  const [GlobalPokemon , setGlobalPokemon] = useState([])
-  const [xpage , setXpage] = useState(1)
+  const [arrayPokemon, setArrayPokemon] = useState([]);
+  const [GlobalPokemon , setGlobalPokemon] = useState([]);
+  const [xpage , setXpage] = useState(1);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const api = async () => {
@@ -38,11 +41,20 @@ export default function LayoutHome() {
   
   }
 
-  console.log(GlobalPokemon);
+  const filterPokemons = search?.length > 0
+  ? GlobalPokemon?.filter(pokemon => pokemon?.name?.includes(search))
+  : arrayPokemon
+
+
+  const obtenerSearch = (e) => {
+    const texto = e.toLowerCase()
+    setSearch(texto)
+    setXpage(1)
+  }
 
   return (
     <div className={css.layout}>
-      <Header/>
+      <Header obtenerSearch={obtenerSearch}/>
 
       <section className={css.section_pagination}>
         <div className={css.div_pagination}>
@@ -74,7 +86,7 @@ export default function LayoutHome() {
       </section>
 
       <div className={css.card_content}>
-        {arrayPokemon.map((card, index) => {
+        {filterPokemons.map((card, index) => {
           return <Card key={index} card={card}/>
         })}
       </div>

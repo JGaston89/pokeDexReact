@@ -8,6 +8,25 @@
   box-sizing: border-box;
 }
 
+
+//REVISAR ESTOS ESTILOS DE SCROLLBAR YA QUE NO FUNCIONAN
+body {
+  // &::-webkit-scrollbar{
+  //   width: 5px;
+  // }
+
+  // &::-webkit-scrollbar-thumb{
+  //   background-color: rgb(18, 113, 215);
+  //   border-radius: 5px;
+  // }
+
+  // &::-webkit-scrollbar-track{
+  //   background-color: #afaeae;
+  // }
+
+  background-image: url(https://i.pinimg.com/originals/10/cb/6e/10cb6eaa132e512450b367a395282c1f.jpg);
+}
+
 // COLORES CARD
 
 .bg-green{
